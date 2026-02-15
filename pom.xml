@@ -1,0 +1,17 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.internetbanking</groupId>
+  <artifactId>internet-banking-parent</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>core-banking-service</module>
+    <module>internet-banking-api-gateway</module>
+    <module>internet-banking-config-server</module>
+    <module>internet-banking-fund-transfer-service</module>
+    <module>internet-banking-service-registry</module>
+    <module>internet-banking-user-service</module>
+    <module>internet-banking-utility-payment-service</module>
+  </modules>
+</project>
