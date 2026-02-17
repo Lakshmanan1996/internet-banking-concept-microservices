@@ -1,11 +1,16 @@
-FROM maven:3.9.6-eclipse-temurin-17 AS build
-WORKDIR /build
-COPY pom.xml .
-COPY src ./src
-RUN mvn clean package -DskipTests
+FROM eclipse-temurin:21.0.2_13-jre-alpine
 
-FROM eclipse-temurin:17-jdk
+LABEL maintainer="rlakshmana50@gmail.com"
+
 WORKDIR /app
-COPY --from=build /build/target/*.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","app.jar"]
+
+VOLUME /main-app
+
+COPY build/libs/core-banking-service-0.0.1-SNAPSHOT.jar app.jar
+COPY wait-for-it.sh wait-for-it.sh
+
+RUN chmod +x wait-for-it.sh && apk add --no-cache bash
+
+EXPOSE 8092
+
+ENTRYPOINT ["java", "-Dspring.profiles.active=docker", "-jar", "app.jar"]
